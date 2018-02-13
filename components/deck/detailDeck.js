@@ -11,7 +11,7 @@ class DetailDeck extends Component {
             <View>
                 <Text>{deck.title}</Text>
                 <Text>{deck.questions.length}</Text>
-                <Button title='Add Card' onPress={() => navigation.navigate('AddCard', { deck })}></Button>
+                <Button title='Add Card' onPress={() => navigation.navigate('NewCard', { deck })}></Button>
                 <Button title='Start Quiz' onPress={() => navigation.navigate('Quiz', { deck })}></Button>
             </View>
         );

@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import { blue } from '../../template/colors';
+import {getDecks} from './actions';
 
 class ListDecks extends Component {
+
+    componentDidMount = () => {
+        this.props.dispatch(getDecks());
+    }
+
     render() {
         const { decks, navigation } = this.props;
         decksList = Object.keys(decks);

@@ -6,6 +6,7 @@ import { blue, white } from './colors';
 import ListDecks from '../components/deck/listDecks';
 import NewDeck from '../components/deck/newDeck';
 import DetailDeck from '../components/deck/detailDeck';
+import NewCard from '../components/card/newCard';
 
 const Tabs = TabNavigator({
     Decks: {
@@ -37,7 +38,8 @@ const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs,
     },
-    DetailDeck: {screen: DetailDeck, navigationOptions}
+    DetailDeck: {screen: DetailDeck, navigationOptions},
+    NewCard: {screen: NewCard, navigationOptions}
 });
 
 export default MainNavigator;
