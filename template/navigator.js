@@ -2,7 +2,9 @@ import React from 'react';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { blue, white } from './colors';
+
 import ListDecks from '../components/deck/listDecks';
+import NewDeck from '../components/deck/newDeck';
 
 const Tabs = TabNavigator({
     Decks: {
@@ -13,7 +15,7 @@ const Tabs = TabNavigator({
         }
     },
     NewDeck: {
-        screen: ListDecks,
+        screen: NewDeck,
         navigationOptions: {
             tabBarLabel: 'New Deck',
             tabBarIcon: () => <MaterialIcons name='add-to-photos' size={30} color={blue} />

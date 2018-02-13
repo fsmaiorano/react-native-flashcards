@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { blue } from '../../template/colors';
 
 class ListDecks extends Component {
     render() {
+        const { decks, navigation } = this.props;
+        decksList = Object.keys(decks);
         return (
-            <Text>List Decks</Text>
+            <ScrollView>
+                {
+                    decksList.map((selectedDeck) => {
+                        let deck = decks[selectedDeck];
+                        return (
+                            <TouchableOpacity
+                                key={deck.title}
+                                onPress={() => navigation.navigate('DetailDeck', { deck })}
+                            >
+                                <Text style={[{ fontSize: 18 }]}>{deck.title}</Text>
+                                <Text style={[{ color: blue }]}>{deck.questions.length} cards</Text>
+                            </TouchableOpacity>
+                        );
+                    })
+                }
+            </ScrollView>
         )
     }
 }
 
 const mapStateToProps = (state) => {
+    const { decks } = state;
     return {
-
+        decks
     }
 }
 
