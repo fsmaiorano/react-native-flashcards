@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Button } from 'react-native'
 import { blue } from '../../template/colors';
-import {getDecks} from './actions';
+import {getDecks, reset} from './actions';
 
 class ListDecks extends Component {
 
     componentDidMount = () => {
         this.props.dispatch(getDecks());
+    }
+
+    reset = () => {
+        this.props.dispatch(reset());
     }
 
     render() {
@@ -29,6 +33,7 @@ class ListDecks extends Component {
                         );
                     })
                 }
+                <Button title='Reset' onPress={this.reset}></Button>
             </ScrollView>
         )
     }

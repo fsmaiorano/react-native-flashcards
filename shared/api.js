@@ -13,7 +13,6 @@ export function addDeck(title, newDeck) {
     });
 }
 
-
 export function addCard(title, card) {
   return AsyncStorage.getItem(DECKS_KEY)
     .then(results => {
@@ -32,4 +31,8 @@ export function addCard(title, card) {
 export function getDecks() {
   return AsyncStorage.getItem(DECKS_KEY)
     .then(results => JSON.parse(results));
+}
+
+export function reset() {
+  return AsyncStorage.clear(DECKS_KEY);
 }

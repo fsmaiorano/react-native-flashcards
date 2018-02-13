@@ -3,6 +3,7 @@ import * as api from '../../shared/api';
 
 export const ADD_DECK = 'ADD_DECK';
 export const GET_DECKS = 'GET_DECKS';
+export const RESET = 'RESET';
 
 export const getDecks = () => {
   return dispatch => {
@@ -21,6 +22,17 @@ export const newDeck = (title, newDeck) => {
       dispatch({
         type: ADD_DECK,
         data: { title, newDeck }
+      })
+    })
+  }
+}
+
+export const reset = () => {
+  return dispatch => {
+    api.reset().then((result) => {
+      dispatch({
+        type: CLEAR,
+        data: {}
       })
     })
   }
