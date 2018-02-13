@@ -1,12 +1,19 @@
-import React, {Component} from 'react'
-import {View, Text} from 'react-native'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { View, Text } from 'react-native'
 
 class ListDecks extends Component {
-    render(){
-        return(
+    render() {
+        return (
             <Text>List Decks</Text>
         )
     }
 }
 
-export default ListDecks;
+const mapStateToProps = (state) => {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps)(ListDecks);
