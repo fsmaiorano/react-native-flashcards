@@ -11,6 +11,7 @@ class NewDeck extends Component {
     createDeck = () => {
         const { title } = this.state;
         this.props.dispatch(newDeck(title, { title, questions: [] }));
+        this.props.navigation.goBack();
     }
 
     render() {
