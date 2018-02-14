@@ -7,6 +7,7 @@ import ListDecks from '../components/deck/listDecks';
 import NewDeck from '../components/deck/newDeck';
 import DetailDeck from '../components/deck/detailDeck';
 import NewCard from '../components/card/newCard';
+import Quiz from '../components/quiz/quiz';
 
 const Tabs = TabNavigator({
     Decks: {
@@ -39,7 +40,8 @@ const MainNavigator = StackNavigator({
         screen: Tabs,
     },
     DetailDeck: {screen: DetailDeck, navigationOptions},
-    NewCard: {screen: NewCard, navigationOptions}
+    NewCard: {screen: NewCard, navigationOptions},
+    Quiz: {screen: Quiz, navigationOptions},
 });
 
 export default MainNavigator;
