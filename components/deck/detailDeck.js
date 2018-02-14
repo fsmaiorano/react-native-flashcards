@@ -4,11 +4,6 @@ import { connect } from 'react-redux';
 
 class DetailDeck extends Component {
 
-    componentDidMount = () => {
-        const {decks} = this.props;
-        console.log(decks);
-    }
-
     render() {
         const { deck, navigation } = this.props;
     
