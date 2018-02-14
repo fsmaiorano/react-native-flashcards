@@ -33,12 +33,14 @@ class NewCard extends Component {
                 <TextInput
                     onChangeText={(text) => this.onChange("question", text)}
                     value={this.state.question}
+                    placeholder="Question"
                 />
                 <TextInput
                     onChangeText={(text) => this.onChange("answer", text)}
                     value={this.state.answer}
+                    placeholder="Awsner"
                 />
-                <Button title='Create Card' onPress={() => this.onSubmit()}></Button>
+                <Button title='Save' onPress={() => this.onSubmit()}></Button>
             </View>
         )
     }
