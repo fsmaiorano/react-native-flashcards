@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TextInput, Platform, Button } from 'react-native'
+import { View, Text, TextInput, Platform, Button, StyleSheet } from 'react-native'
 import { newDeck } from './actions';
 
 class NewDeck extends Component {
@@ -25,6 +25,10 @@ class NewDeck extends Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    
+})
 
 const mapStateToProps = (state) => {
     const { decks } = state;
