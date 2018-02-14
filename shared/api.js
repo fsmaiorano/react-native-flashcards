@@ -1,7 +1,6 @@
 
 import { AsyncStorage } from 'react-native'
-
-const DECKS_KEY = 'Flashcards:432';
+import {DECKS_KEY} from './constants';
 
 export function addDeck(title, newDeck) {
   return AsyncStorage.getItem(DECKS_KEY)

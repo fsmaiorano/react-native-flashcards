@@ -6,9 +6,13 @@ import CustomStatusBar from './template/customStatusBar';
 import store from './store';
 import { blue } from './template/colors';
 import './config/reactotronConfig';
-import './config/devToolsConfig';
+// import './config/devToolsConfig';
+import { setLocalNotification } from './shared/notifications';
 
 export default class App extends React.Component {
+  componentDidMount = () => {
+    setLocalNotification();
+  }
   render() {
     console.tron.log('Iniciando APP...');
     return (

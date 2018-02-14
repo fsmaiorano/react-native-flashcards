@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
 import { white, black, red, blue } from '../../template/colors';
+import { clearLocalNotification, setLocalNotification } from '../../shared/notifications';
 
 class Quiz extends Component {
     state = {
@@ -18,16 +19,17 @@ class Quiz extends Component {
     handleButton = (isCorrect) => {
         const { deck } = this.props.navigation.state.params;
 
-        if (this.state.question === (deck.questions.length - 1)) {
-            let setQuestion = this.state.question + 1;
-            this.setState({ question: setQuestion });
-        }
+        this.setState({question: this.state.question + 1 });
 
         if (isCorrect) {
-            let newScore = this.state.score + 1;
-            this.setState({ score: newScore })
+            this.setState({ score: this.state.score + 1 })
         }
+        
+        clearLocalNotification()
+            .then(() => setLocalNotification());
     }
+
+
 
     render() {
         const { deck } = this.props.navigation.state.params;
@@ -39,7 +41,7 @@ class Quiz extends Component {
             return (
                 <View>
                     <Text>
-                        Question 1 of {deck.questions.length}
+                        Question {this.state.question + 1} of {deck.questions.length}
                     </Text>
                     <Text>
                         Question: {currentQuestion.question}
