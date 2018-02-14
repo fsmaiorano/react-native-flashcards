@@ -4,9 +4,14 @@ import { connect } from 'react-redux';
 
 class DetailDeck extends Component {
 
+    componentDidMount = () => {
+        const {decks} = this.props;
+        console.log(decks);
+    }
+
     render() {
-        const { navigation } = this.props;
-        const { deck } = this.props.navigation.state.params;
+        const { deck, navigation } = this.props;
+    
         return (
             <View>
                 <Text>{deck.title}</Text>
@@ -18,11 +23,16 @@ class DetailDeck extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { decks } = state;
-    return {
-        decks
-    }
-}
+function mapStateToProps({ decks }, { navigation }) {
+    const { title } = navigation.state.params.deck;
+    let deck;
+    Object.keys(decks).map(key => {
+      if(key === title){
+        deck = decks[key];
+      }
+    });
+  
+    return { deck };
+  }
 
 export default connect(mapStateToProps)(DetailDeck);

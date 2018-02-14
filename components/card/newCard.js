@@ -18,7 +18,9 @@ class NewCard extends Component {
 
     onSubmit() {
         const { deck } = this.props.navigation.state.params;
-        this.props.dispatch(addCard(deck.title, this.state));
+        const {decks} = this.props;
+        this.props.dispatch(addCard(deck.title, {answer: this.state.answer, question: this.state.question}, decks));
+        this.props.navigation.goBack();
     }
 
 
