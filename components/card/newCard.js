@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Platform, Button } from 'react-nativ
 import { connect } from 'react-redux';
 import { blue, white } from '../../template/colors';
 import { addCard } from './actions';
+import {getDecks} from '../deck/actions';
 
 class NewCard extends Component {
     state = {
@@ -20,6 +21,8 @@ class NewCard extends Component {
         const { deck } = this.props.navigation.state.params;
         const {decks} = this.props;
         this.props.dispatch(addCard(deck.title, {answer: this.state.answer, question: this.state.question}, decks));
+        this.setState({answer: '', question: ''});
+        this.props.dispatch(getDecks());
         this.props.navigation.goBack();
     }
 

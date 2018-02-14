@@ -32,7 +32,7 @@ function mapStateToProps({ decks }, { navigation }) {
       }
     });
   
-    return { deck };
+    return {decks, deck };
   }
 
 export default connect(mapStateToProps)(DetailDeck);
