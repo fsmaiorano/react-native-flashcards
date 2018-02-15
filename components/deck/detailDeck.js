@@ -21,7 +21,10 @@ class DetailDeck extends Component {
                 <Text style={[styles.text, { marginTop: 10 }]}>Cards: {deck.questions.length}</Text>
                 <View>
                     <CustomButton style={styles.button} color={blue} textColor={white} onPress={() => navigation.navigate('NewCard', { deck })}>Add Card</CustomButton>
-                    <CustomButton style={styles.button} color={blue} textColor={white} onPress={() => navigation.navigate('Quiz', { deck })}>Start Quiz</CustomButton>
+                    {
+                        deck.questions.length > 0 ?
+                            (<CustomButton style={styles.button} color={blue} textColor={white} onPress={() => navigation.navigate('Quiz', { deck })}>Start Quiz</CustomButton>) : (<Text></Text>)
+                    }
                 </View>
             </View>
         );
