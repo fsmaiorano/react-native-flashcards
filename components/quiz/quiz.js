@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, StyleSheet } from 'react-native';
 import { white, black, red, blue } from '../../template/colors';
 import { clearLocalNotification, setLocalNotification } from '../../shared/notifications';
+import CustomButton from '../../template/customButton';
 
 class Quiz extends Component {
     state = {
@@ -19,17 +20,15 @@ class Quiz extends Component {
     handleButton = (isCorrect) => {
         const { deck } = this.props.navigation.state.params;
 
-        this.setState({question: this.state.question + 1 });
+        this.setState({ question: this.state.question + 1 });
 
         if (isCorrect) {
             this.setState({ score: this.state.score + 1 })
         }
-        
+
         clearLocalNotification()
             .then(() => setLocalNotification());
     }
-
-
 
     render() {
         const { deck } = this.props.navigation.state.params;
@@ -40,37 +39,51 @@ class Quiz extends Component {
         if (currentQuestion !== null) {
             return (
                 <View>
-                    <Text>
+                    <Text style={[styles.text, { marginTop: 30 }]}>
                         Question {this.state.question + 1} of {deck.questions.length}
                     </Text>
-                    <Text>
+                    <Text style={[styles.text, { marginTop: 25 }]}>
                         Question: {currentQuestion.question}
                     </Text>
-                    <Text>
+                    <Text style={[styles.text, { marginTop: 5 }]}>
                         Aswner: {currentQuestion.answer}
                     </Text>
                     <View style={{ marginTop: 40 }}>
-                        <Button
-                            title="Correct"
-                            color={red}
-                            onPress={() => this.handleButton(true)}
-                        />
-                        <View style={{ marginTop: 10 }} />
-                        <Button
-                            title="Incorrect"
+                        <CustomButton
+                            style={styles.button}
                             color={blue}
-                            onPress={() => this.handleButton(false)}
-                        />
+                            textColor={white}
+                            onPress={() => this.handleButton(true)}>
+                            Correct
+                        </CustomButton>
+                        <View style={{ marginTop: 10 }} />
+                        <CustomButton
+                            style={styles.button}
+                            color={blue}
+                            textColor={white}
+                            onPress={() => this.handleButton(false)}>
+                            Incorrect
+                        </CustomButton>
                     </View>
                 </View>
             )
         }
         else {
             return (
-                <Text>Score: {score}</Text>
+                <Text style={[styles.text, { marginTop: 30 }]}>
+                    Score: {score}
+                </Text>
             )
         }
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 25,
+        textAlign: 'center',
+        alignItems: 'center',
+    }
+})
 
 export default Quiz;
