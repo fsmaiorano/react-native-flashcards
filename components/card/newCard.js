@@ -25,11 +25,18 @@ class NewCard extends Component {
     }
 
     onSubmit() {
+        const { isInvalid, answer, question } = this.state;
         const { deck } = this.props.navigation.state.params;
         const { decks } = this.props;
-        this.props.dispatch(addCard(deck.title, { answer: this.state.answer, question: this.state.question }, decks));
-        this.setState({ answer: '', question: '' });
-        this.props.navigation.goBack();
+
+        if (question === "" || answer === "") {
+            this.setState({ isInvalid: true });
+        }
+        else {
+            this.props.dispatch(addCard(deck.title, { answer: this.state.answer, question: this.state.question }, decks));
+            this.setState({ answer: '', question: '', isInvalid: false });
+            this.props.navigation.goBack();
+        }
     }
 
 
@@ -50,7 +57,7 @@ class NewCard extends Component {
                     value={this.state.answer}
                     placeholder="Insert the answer"
                 />
-             
+
                 <CustomButton
                     color={blue}
                     textColor={white}
