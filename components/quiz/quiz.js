@@ -10,6 +10,12 @@ class Quiz extends Component {
         score: 0,
     }
 
+    static navigationOptions = () => {
+        return {
+            title: "Quiz"
+        }
+    }
+
     currentQuestion = (deck) => {
         if (this.state.question !== deck.questions.length) {
             return deck.questions[this.state.question];
@@ -58,7 +64,6 @@ class Quiz extends Component {
                         </CustomButton>
                         <View style={{ marginTop: 10 }} />
                         <CustomButton
-                            style={styles.button}
                             color={blue}
                             textColor={white}
                             onPress={() => this.handleButton(false)}>

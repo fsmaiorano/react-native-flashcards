@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TextInput, Platform, Button, StyleSheet } from 'react-native'
 import { newDeck } from './actions';
-import {white} from '../../template/colors';
+import { white, blue } from '../../template/colors';
+import CustomButton from '../../template/customButton';
 
 class NewDeck extends Component {
     state = {
@@ -12,13 +13,13 @@ class NewDeck extends Component {
 
     createDeck = () => {
         const { title, isInvalid } = this.state;
-        if(title !== ''){
+        if (title !== '') {
             this.props.dispatch(newDeck(title, { title, questions: [] }));
-            this.setState({isInvalid: false});
+            this.setState({ isInvalid: false });
             this.props.navigation.goBack();
         }
         else {
-            this.setState({isInvalid: true});
+            this.setState({ isInvalid: true });
         }
     }
 
@@ -33,7 +34,14 @@ class NewDeck extends Component {
                     onChangeText={(title) => this.setState({ title })}
                     placeholder={'Insert here the name your new deck'}>
                 </TextInput>
-                <Button onPress={this.createDeck} title='Create Deck'></Button>
+
+                <CustomButton
+                    style={{ width: 150, marginTop: 50 }}
+                    color={blue}
+                    textColor={white}
+                    onPress={this.createDeck}>
+                    Create Deck
+                </CustomButton>
             </View>
         )
     }

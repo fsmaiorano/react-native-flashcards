@@ -1,4 +1,5 @@
 import React from 'react';
+import {Platform} from 'react-native';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { blue, white } from './colors';
@@ -28,6 +29,20 @@ const Tabs = TabNavigator({
         navigationOptions: {
             header: null
         },
+        tabBarOptions: {
+            activeTintColor: Platform.OS == 'ios' ? blue : white,
+            style: {
+                height: 56,
+                backgroundColor: Platform.OS != 'ios' ? blue : white,
+                shadowColor: 'rgba(0,0,0,0.24)',
+                shadowOffset: {
+                    width: 0,
+                    height: 3
+                },
+                shadowRadius: 6,
+                shadowOpacity: 1
+            }
+        }
     })
 
 const navigationOptions = {
@@ -39,9 +54,9 @@ const MainNavigator = StackNavigator({
     Home: {
         screen: Tabs,
     },
-    DetailDeck: {screen: DetailDeck, navigationOptions},
-    NewCard: {screen: NewCard, navigationOptions},
-    Quiz: {screen: Quiz, navigationOptions},
+    DetailDeck: { screen: DetailDeck, navigationOptions },
+    NewCard: { screen: NewCard, navigationOptions },
+    Quiz: { screen: Quiz, navigationOptions },
 });
 
 export default MainNavigator;

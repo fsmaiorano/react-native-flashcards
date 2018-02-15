@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Platform, Button } from 'react-nativ
 import { connect } from 'react-redux';
 import { blue, white } from '../../template/colors';
 import { addCard } from './actions';
+import CustomButton from '../../template/customButton';
 
 class NewCard extends Component {
     state = {
@@ -17,11 +18,17 @@ class NewCard extends Component {
         });
     }
 
+    static navigationOptions = () => {
+        return {
+            title: "Add Card"
+        }
+    }
+
     onSubmit() {
         const { deck } = this.props.navigation.state.params;
-        const {decks} = this.props;
-        this.props.dispatch(addCard(deck.title, {answer: this.state.answer, question: this.state.question}, decks));
-        this.setState({answer: '', question: ''});
+        const { decks } = this.props;
+        this.props.dispatch(addCard(deck.title, { answer: this.state.answer, question: this.state.question }, decks));
+        this.setState({ answer: '', question: '' });
         this.props.navigation.goBack();
     }
 
@@ -31,19 +38,25 @@ class NewCard extends Component {
         const { isInvalid } = this.state;
         return (
             <View style={styles.container}>
-                 <TextInput 
-                 style={[styles.input, { margin: 40, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
+                <TextInput
+                    style={[styles.input, { margin: 40, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
                     onChangeText={(text) => this.onChange("question", text)}
                     value={this.state.question}
                     placeholder="Insert the question"
                 />
                 <TextInput
-                  style={[styles.input, {margin: 40, marginTop: 0, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
+                    style={[styles.input, { margin: 40, marginTop: 0, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
                     onChangeText={(text) => this.onChange("answer", text)}
                     value={this.state.answer}
                     placeholder="Insert the answer"
                 />
-                <Button title='Save Card' onPress={() => this.onSubmit()}></Button>
+             
+                <CustomButton
+                    color={blue}
+                    textColor={white}
+                    onPress={() => this.onSubmit()}>
+                    Save Card
+                </CustomButton>
             </View>
         )
     }

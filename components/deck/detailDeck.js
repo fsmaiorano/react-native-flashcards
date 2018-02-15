@@ -6,6 +6,12 @@ import { blue, gray, white } from '../../template/colors';
 
 class DetailDeck extends Component {
 
+    static navigationOptions = () => {
+        return {
+            title: "Detail"
+        }
+    }
+
     render() {
         const { deck, navigation } = this.props;
 
