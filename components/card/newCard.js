@@ -7,7 +7,8 @@ import { addCard } from './actions';
 class NewCard extends Component {
     state = {
         answer: '',
-        question: ''
+        question: '',
+        isInvalid: false
     }
 
     onChange(key, value) {
@@ -27,24 +28,40 @@ class NewCard extends Component {
 
     render() {
         const { deck } = this.props.navigation.state.params;
+        const { isInvalid } = this.state;
         return (
-            <View>
-                <Text>-> {deck.title}</Text>
-                <TextInput
+            <View style={styles.container}>
+                 <TextInput 
+                 style={[styles.input, { margin: 40, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
                     onChangeText={(text) => this.onChange("question", text)}
                     value={this.state.question}
-                    placeholder="Question"
+                    placeholder="Insert the question"
                 />
                 <TextInput
+                  style={[styles.input, {margin: 40, marginTop: 0, borderColor: isInvalid ? 'red' : 'gray', borderWidth: 1 }]}
                     onChangeText={(text) => this.onChange("answer", text)}
                     value={this.state.answer}
-                    placeholder="Awsner"
+                    placeholder="Insert the answer"
                 />
-                <Button title='Save' onPress={() => this.onSubmit()}></Button>
+                <Button title='Save Card' onPress={() => this.onSubmit()}></Button>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 20,
+        paddingTop: 40,
+        backgroundColor: white
+    },
+    input: {
+        margin: 15,
+        padding: 5,
+        borderRadius: 4,
+    },
+})
 
 const mapStateToProps = (state) => {
     const { decks } = state;
