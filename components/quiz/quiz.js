@@ -8,6 +8,7 @@ class Quiz extends Component {
     state = {
         question: 0,
         score: 0,
+        showAnswer: false,
     }
 
     static navigationOptions = () => {
@@ -36,9 +37,14 @@ class Quiz extends Component {
             .then(() => setLocalNotification());
     }
 
+    toggle = () => {
+        const { showAnswer } = this.state;
+        showAnswer ? this.setState({ showAnswer: false }) : this.setState({ showAnswer: true });
+    }
+
     render() {
         const { deck } = this.props.navigation.state.params;
-        const { score, question } = this.state;
+        const { score, question, showAnswer } = this.state;
 
         currentQuestion = this.currentQuestion(deck);
 
@@ -48,12 +54,21 @@ class Quiz extends Component {
                     <Text style={[styles.text, { marginTop: 30 }]}>
                         Question {this.state.question + 1} of {deck.questions.length}
                     </Text>
-                    <Text style={[styles.text, { marginTop: 25 }]}>
-                        Question: {currentQuestion.question}
-                    </Text>
-                    <Text style={[styles.text, { marginTop: 5 }]}>
-                        Aswner: {currentQuestion.answer}
-                    </Text>
+
+                    {
+                        !showAnswer ? (
+                            <Text style={[styles.text, { marginTop: 25 }]}>
+                                Question: {currentQuestion.question}
+                            </Text>
+                        )
+                            :
+                            (
+                                <Text style={[styles.text, { marginTop: 25 }]}>
+                                    Aswner: {currentQuestion.answer}
+                                </Text>
+                            )
+                    }
+                    <Button color={blue} title={showAnswer ? "Show Question" : "Show Answer"}  onPress={() => this.toggle()}>></Button>
                     <View style={{ marginTop: 40 }}>
                         <CustomButton
                             style={styles.button}
