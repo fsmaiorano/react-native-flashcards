@@ -36,6 +36,9 @@ class ListDecks extends Component {
                             );
                         })
                     }
+
+                    {/* <Button title='Reset' onPress={this.reset}></Button> */}
+
                 </ScrollView>
             )
         }
@@ -49,7 +52,6 @@ class ListDecks extends Component {
     }
 }
 
-// <Button title='Reset' onPress={this.reset}></Button>
 const styles = StyleSheet.create({
     noDecks: {
         alignSelf: 'center',

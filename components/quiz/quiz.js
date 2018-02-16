@@ -42,6 +42,14 @@ class Quiz extends Component {
         showAnswer ? this.setState({ showAnswer: false }) : this.setState({ showAnswer: true });
     }
 
+    restartQuiz = () => {
+        this.setState({ question: 0, score: 0, showAnswer: false, });
+    }
+
+    backToDeck = () => {
+        this.props.navigation.goBack();
+    }
+
     render() {
         const { deck } = this.props.navigation.state.params;
         const { score, question, showAnswer } = this.state;
@@ -68,7 +76,7 @@ class Quiz extends Component {
                                 </Text>
                             )
                     }
-                    <Button color={blue} title={showAnswer ? "Show Question" : "Show Answer"}  onPress={() => this.toggle()}>></Button>
+                    <Button color={blue} title={showAnswer ? "Show Question" : "Show Answer"} onPress={() => this.toggle()}>></Button>
                     <View style={{ marginTop: 40 }}>
                         <CustomButton
                             style={styles.button}
@@ -90,9 +98,25 @@ class Quiz extends Component {
         }
         else {
             return (
-                <Text style={[styles.text, { marginTop: 30 }]}>
-                    Score: {score}
-                </Text>
+                <View>
+                    <Text style={[styles.text, { marginTop: 30 }]}>
+                        Score: {score}
+                    </Text>
+                    <CustomButton
+                        style={{ marginTop: 25 }}
+                        color={blue}
+                        textColor={white}
+                        onPress={() => this.restartQuiz()}>
+                        Restart Quiz
+                        </CustomButton>
+                    <CustomButton
+                        style={{ marginTop: 15 }}
+                        color={blue}
+                        textColor={white}
+                        onPress={() => this.backToDeck()}>
+                        Back to Deck
+                        </CustomButton>
+                </View>
             )
         }
     }
